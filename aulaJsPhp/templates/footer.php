@@ -1,4 +1,4 @@
 <?php
   echo "<hr>";
-  echo "<h2>Desenvolvimento por Professor Marcelo</h2>";
+  echo "<h2>Desenvolvimento por João Gabriel Lemos Alves</h2>";
 ?>
