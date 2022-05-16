@@ -13,14 +13,17 @@
     <fieldset>
        <label for="email">Email:</label> <br>
        <input type="mail" name="email">
+       <br>
 
        <br>
        <label for="nome">Nome:</label> <br>
        <input type="text" name="nome">
+       <br>
 
        <br>
        <label for="fone">Fone:</label> <br>
        <input type="text" name="fone">
+       <br>
 
        <br>
        <label for="senha">Senha: </label> <br>

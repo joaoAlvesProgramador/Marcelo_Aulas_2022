@@ -1,4 +1,5 @@
 <?php
+session_start();
 
      echo "<h1>Exemplo cookie</h1>";
 
@@ -20,6 +21,7 @@
           setcookie('email',$email,$expiracao);
      }
      echo "ola $email";
+     echo $_SESSION['aviso'];
 
 ?>
 <!DOCTYPE html>
