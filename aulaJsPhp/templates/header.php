@@ -1,4 +1,8 @@
 <?php
-   echo "<h1>Cabeçalho</h1>";
-   echo "<hr>"; 
+
 ?>
+<ul>
+  <li><a href="login.php">Login</a></li>
+  <li><a href="cadUsuario.php">Cadastro</a></li>
+</ul>
+<hr>

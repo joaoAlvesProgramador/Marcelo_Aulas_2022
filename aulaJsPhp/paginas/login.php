@@ -5,8 +5,6 @@
 
 <form class="jao">
     <fieldset class="AA">
-      <legend>Login</legend>
-
       <label for="email">Email:</label>
       <br>
       <input type="text" name="email">
@@ -24,5 +22,5 @@
 
 </form>
 <?php
-  require("../templantes/footer.php");
+  require("../templates/footer.php");
 ?>

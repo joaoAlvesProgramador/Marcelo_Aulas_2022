@@ -9,8 +9,6 @@
   }
 ?>
 
-<h1>Cadastro de usuario</h1>
-
 <form action="" method="POST" class="jao">
     <fieldset>
        <label for="email">Email:</label> <br>
