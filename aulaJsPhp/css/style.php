@@ -3,8 +3,15 @@
     font-family: Arial, sans-serif;
     padding: 0;
     margin: 0;
-}
+    color:#16193B;
 
+}
+hr{
+ border-color: #16193B; 
+}
+body{
+  background-color:#35478C;
+}
 .jao{
     font-family: Arial, sans-serif;
     /* margin: auto; */
@@ -26,22 +33,27 @@
 input{
   border: 2px solid black;
   border-radius: 5px;
+  height: 25px;
+  width:95%;
 }
 
 .botao
 {
-    background-color: #4CAF50;
+    background-color: #ADD5F7;
+    height: 30px;
+    width: 70px;
 } 
 
 fieldset
 {
-  border: 2px solid black;
+  border: 2px solid #16193B;
   border-radius: 5px;
-  width:300px;
+  width:750px;
   height:250px;
   background-color: #4E7AC7;
   margin:auto;
   padding-top: 25px;
+  padding-bottom: 25px;
 }
 ul {
   list-style-type: none;
