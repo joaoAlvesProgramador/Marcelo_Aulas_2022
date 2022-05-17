@@ -6,6 +6,9 @@
     color:#16193B;
 
 }
+.nanda{
+    color: #0FC2C0;
+}
 hr{
  border-color: #16193B; 
 }
@@ -49,7 +52,7 @@ fieldset
   border: 2px solid #16193B;
   border-radius: 5px;
   width:750px;
-  height:250px;
+  height:350px;
   background-color: #4E7AC7;
   margin:auto;
   padding-top: 25px;

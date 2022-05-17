@@ -34,14 +34,14 @@
       <label for="email">Email:</label>
       <br>
       <input type="text" name="email" value=<?php echo $email?>>
-      <span>*<?php echo $emailErr ?></span>
+      <span class="nanda">*<?php echo $emailErr ?></span>
       <br>
 
         <br>
       <label for="senha">Senha:</label>
       <br>
       <input type="text" name="senha" value=<?php echo $senha?>>
-      <span>* <?php echo $senhaErr ?></span>
+      <span class="nanda">* <?php echo $senhaErr ?></span>
       <br>
 
        <br>
