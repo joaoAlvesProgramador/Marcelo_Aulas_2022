@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     color:#16193B;
+    font-size:20px;
 
 }
 .nanda{
@@ -16,7 +17,7 @@ body{
   background-color:#35478C;
 }
 .jao{
-    font-family: Arial, sans-serif;
+    font-family: fantasy;
     /* margin: auto; */
     text-align: center; 
     width: 755px;
@@ -40,7 +41,7 @@ input{
   width:95%;
 }
 
-.botao
+.botao 
 {
     background-color: #ADD5F7;
     height: 30px;
@@ -49,6 +50,7 @@ input{
 
 fieldset
 {
+  font-family: fantasy;
   border: 2px solid #16193B;
   border-radius: 5px;
   width:750px;
@@ -78,7 +80,7 @@ li a {
 }
 
 li a:hover {
-  background-color: #555;
+  background-color: #ADD5F7;
   color: white;
 }
 
