@@ -1,4 +1,9 @@
 <?php
+  include "../include/mysql.php";
+
+
+
+
   require("../templates/header.php");
   require("../css/style.php");
 
@@ -12,11 +17,14 @@
   $nome ="";
   $fone = "";
   $senha="";
+  $administrador="";
 
   $emailErr="";
   $nomeErr="";
   $foneErr="";
   $senhaErr="";
+  $administradorErr="";
+  $msgErr="";
 
 
   function test_input($data){
@@ -27,7 +35,7 @@
     return $data;
   }
   
-  if($_SERVER['REQUEST_METHOD'] == "POST"){
+  if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
     if(empty($_POST['email'])){
       $emailErr = "Email é obrigatorio";
     } else {
@@ -48,7 +56,19 @@
     } else {
       $fone=$_POST['fone'];
     }
+    if(empty($_POST['administrador'])){
+      $administrador=false;
+    } else {
+      $administrador=true;
+    }
 
+    $sql = $pdo->prepare(" INSERT INTO USUARIO ( codigo, nome , email , senha , fone, administrador)
+                          VALUES (null,?,?,?,?,?)");
+    if($sql->execute(array($nome, $email,$senha,$fone,$administrador))){
+      $msgErr= "Dados cadastrados com sucesso!";
+    } else {
+      $msgErr="Dados não cadastrados!";
+    }
   }
 
 ?>
@@ -82,7 +102,7 @@
        <label for="administrador">administrador</label>
 
        <br>
-       <input class="botao" type="submit" value="Salvar">
+       <input class="botao" type="submit" value="Salvar" name="cadastro">
        <input class="botao" type="reset" value="Limpar">
 
     </fieldset>
