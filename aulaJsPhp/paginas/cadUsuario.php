@@ -28,51 +28,52 @@
 
 
   function test_input($data){
-    $data=trim($data);
-    $data=stripslashes($data);
-    $data=htmlspecialchars($data);
-
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
     return $data;
-  }
+}
   
-  if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
-    if(empty($_POST['email'])){
-      $emailErr = "Email é obrigatorio";
-    } else {
-      $email=$_POST["email"];
-    }
-    if(empty($_POST['senha'])){
-      $senhaErr="Senha é obrigatoria";
-    } else {
-      $senha=$_POST['senha'];
-    }
-    if(empty($_POST['nome'])){
-      $nomeErr="Nome é obrigatoria";
-    } else {
-      $nome=$_POST['nome'];
-    }
-    if(empty($_POST['fone'])){
-      $foneErr="Fone é obrigatoria";
-    } else {
-      $fone=$_POST['fone'];
-    }
-    if(empty($_POST['administrador'])){
-      $administrador=false;
-    } else {
-      $administrador=true;
-    }
-
-    $sql = $pdo->prepare(" INSERT INTO USUARIO ( codigo, nome , email , senha , fone, administrador)
-                          VALUES (null,?,?,?,?,?)");
-    if($sql->execute(array($nome, $email,$senha,$fone,$administrador))){
-      $msgErr= "Dados cadastrados com sucesso!";
-    } else {
-      $msgErr="Dados não cadastrados!";
-    }
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
+  if (empty($_POST['email'])){
+      $emailErr = "Email é obrigatório!";
+  } else {
+      $email = test_input($_POST["email"]);
   }
+  if (empty($_POST['senha'])){
+      $senhaErr = "Senha é obrigatório!";
+  } else {
+      $senha = test_input($_POST["senha"]);
+  }
+  if (empty($_POST['nome'])){
+      $nomeErr = "Nome é obrigatório!";
+  } else {
+      $nome = test_input($_POST["nome"]);
+  }
+  if (empty($_POST['fone'])){
+      $foneErr = "Telefone é obrigatório!";
+  } else {
+      $fone = test_input($_POST["fone"]);
+  }
+  if (empty($_POST['administrador'])){
+      $administrador = false;
+  } else {
+      $administrador = true;
+  }
+
+  //Inserir no banco de dados
+  $sql = $pdo->prepare("INSERT INTO USUARIU (codigo, nome, email, senha, fone, administrador)
+                        VALUES (null, ?, ?, ?, ?, ?)");
+  if ($sql->execute(array($nome, $email, $senha, $fone, $administrador))){
+      $msgErr = "Dados cadastrados com sucesso!";  
+  } else {
+      $msgErr = "Dados não cadastrados!";
+  }                      
+
+}
 
 ?>
-
+oi
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="POST" class="jao">
     <fieldset>
        <label for="email">Email:</label> <br>
@@ -103,6 +104,8 @@
 
        <br>
        <input class="botao" type="submit" value="Salvar" name="cadastro">
+       <span class="obrigatorio"><?php echo $msgErr ?></span>
+
        <input class="botao" type="reset" value="Limpar">
 
     </fieldset>
