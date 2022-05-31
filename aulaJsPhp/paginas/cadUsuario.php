@@ -61,14 +61,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
       $administrador = true;
   }
 
-  //Inserir no banco de dados
-  $sql = $pdo->prepare("INSERT INTO USUARIU (codigo, nome, email, senha, fone, administrador)
-                        VALUES (null, ?, ?, ?, ?, ?)");
-  if ($sql->execute(array($nome, $email, $senha, $fone, $administrador))){
-      $msgErr = "Dados cadastrados com sucesso!";  
+  //Verificar se existe um usuariu
+  if($email && $nome && $senha && $fone){
+    $sql=$pdo->prepare("SELECT * FROM USUARIU WHERE email = ?");
+    
+
+      //Inserir no banco de dados
+      $sql = $pdo->prepare("INSERT INTO USUARIU (codigo, nome, email, senha, fone, administrador)
+                            VALUES (null, ?, ?, ?, ?, ?)");
+      if ($sql->execute(array($nome, $email, $senha, $fone, $administrador))){
+          $msgErr = "Dados cadastrados com sucesso!";  
+      } else {
+          $msgErr = "Dados não cadastrados!";
+      }                      
   } else {
-      $msgErr = "Dados não cadastrados!";
-  }                      
+    $msgErr="Dados não informados";
+  }
 
 }
 
@@ -104,10 +112,8 @@ oi
 
        <br>
        <input class="botao" type="submit" value="Salvar" name="cadastro">
+       <br>
        <span class="obrigatorio"><?php echo $msgErr ?></span>
-
-       <input class="botao" type="reset" value="Limpar">
-
     </fieldset>
 
 
