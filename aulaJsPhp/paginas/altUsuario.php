@@ -4,6 +4,7 @@
     require("../templates/header.php");
     require("../css/style.php");
 
+    $codigo="";
     $email ="";
     $nome ="";
     $fone = "";
@@ -35,6 +36,9 @@
 
     
     if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
+        if(isset($_POST['codigo'])){
+            $codigo=$_POST['codigo'];
+        }
     if (empty($_POST['email'])){
         $emailErr = "Email é obrigatório!";
     } else {
@@ -56,35 +60,32 @@
         $fone = test_input($_POST["fone"]);
     }
     if (empty($_POST['administrador'])){
-        $administrador = false;
+        $administradorErr = false;
     } else {
         $administrador = true;
     }
 
     //Verificar se existe um usuariu
     if($email && $nome && $senha && $fone){
-        $sql=$pdo->prepare("SELECT * FROM USUARIO WHERE email = ?");
-        if($sql->execute(array($email))){
-        if($sql->rowCount()>0){
-            $msgErr="Email já cadastrado";
-        }else{
-        //Inserir no banco de dados
-        $sql = $pdo->prepare("INSERT INTO USUARIO (codigo, nome, email, senha, fone, administrador)
-                                VALUES (null, ?, ?, ?, ?, ?)");
-        if ($sql->execute(array($nome, $email, $senha, $fone, $administrador))){
-            $msgErr = "Dados cadastrados com sucesso!";  
-            header("location: login.php");
-        } else {
-            $msgErr = "Dados não cadastrados!";
-        }  
-        }
-        }  else {
-        $msgErr="Erro no comando Select";
-        }                   
-    } else {
-        $msgErr="Dados não informados";
-    }
+        $sql=$pdo->prepare("SELECT * FROM usuariu WHERE email = ? AND codigo <> ?");
+            if($sql->execute(array($email,$codigo))){
+                if($sql->rowCount()>0){
+                    $msgErr="Email ja cadastrado para outro usuario";
+                } else {
+                    $sql=$pdo->prepare("UPDATE usuariu SET nome=?, email=?, senha=?, fone=?, administrador=? WHERE codigo=?");
+                    if($sql->execute(array($nome,$email,$senha,$fone,$administrador,$codigo))){
+                        $msgErr="Dados alterados com sucesso!";
+                        header('location: listUsuario.php');
+                    } else {
+                        $msgErr="Dados não alterados!";
+                    }
+                }
+    
 
+            }                  
+        } else {
+        $msgErr="Dados não informados";
+        }
     }
 
 ?>
