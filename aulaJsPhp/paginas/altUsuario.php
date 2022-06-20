@@ -28,7 +28,7 @@
                 $nome = $value ['nome'];
                 $email = $value ['email'];
                 $fone = $value ['fone'];
-                $senha = $value ['senha'];
+                $senha = "";//$value ['senha'];
                 $administrador = $value ['administrador'];
             }
         }
@@ -73,7 +73,7 @@
                     $msgErr="Email ja cadastrado para outro usuario";
                 } else {
                     $sql=$pdo->prepare("UPDATE usuariu SET nome=?, email=?, senha=?, fone=?, administrador=? WHERE codigo=?");
-                    if($sql->execute(array($nome,$email,$senha,$fone,$administrador,$codigo))){
+                    if($sql->execute(array($nome,$email,MD5($senha),$fone,$administrador,$codigo))){
                         $msgErr="Dados alterados com sucesso!";
                         header('location: listUsuario.php');
                     } else {

@@ -1,9 +1,6 @@
 <?php
   include "../include/mysql.php";
-
-
-
-
+  include "../include/functions.php";
   require("../templates/header.php");
   require("../css/style.php");
 
@@ -20,13 +17,6 @@
   $administradorErr="";
   $msgErr="";
 
-
-  function test_input($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
   
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
   if (empty($_POST['email'])){
@@ -57,15 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
 
   //Verificar se existe um usuariu
   if($email && $nome && $senha && $fone){
-    $sql=$pdo->prepare("SELECT * FROM USUARIO WHERE email = ?");
+    $sql=$pdo->prepare("SELECT * FROM USUARIU WHERE email = ?");
     if($sql->execute(array($email))){
       if($sql->rowCount()>0){
         $msgErr="Email já cadastrado";
       }else{
       //Inserir no banco de dados
-      $sql = $pdo->prepare("INSERT INTO USUARIO (codigo, nome, email, senha, fone, administrador)
+      $sql = $pdo->prepare("INSERT INTO USUARIU (codigo, nome, email, senha, fone, administrador)
                             VALUES (null, ?, ?, ?, ?, ?)");
-      if ($sql->execute(array($nome, $email, $senha, $fone, $administrador))){
+      if ($sql->execute(array($nome, $email, MD5($senha), $fone, $administrador))){
           $msgErr = "Dados cadastrados com sucesso!";  
           header("location: login.php");
       } else {

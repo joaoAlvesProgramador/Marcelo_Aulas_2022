@@ -1,4 +1,6 @@
 <?php
+   include "../include/mysql.php";
+   include "../include/functions.php";
    require("../templates/header.php");
    require("../css/style.php");
 
@@ -6,13 +8,6 @@
 
    $emailErr=$senhaErr="";
 
-   function test_input($data){
-     $data=trim($data);
-     $data=stripslashes($data);
-     $data=htmlspecialchars($data);
-
-     return $data;
-   }
    
    if($_SERVER['REQUEST_METHOD'] == "POST"){
      if(empty($_POST['email'])){
@@ -26,7 +21,16 @@
        $senha=$_POST['senha'];
      }
 
-   }
+     $sql = $pdo->prepare("SELECT * FROM usuariu WHERE email=? AND senha=?");
+     if($sql->execute(array($email,MD5($senha)))){
+        $info =$sql->fetchAll(PDO::FETCH_ASSOC);
+        if(count($info)>0){
+          header('location:listUsuario.php');
+        } else {
+          echo '<h6>Email de Usuario não cadastrado</h6>';
+        }
+      }
+      }
 ?>
 
 <form class="jao" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
