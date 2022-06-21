@@ -4,8 +4,11 @@
    require("../templates/header.php");
    require("../css/style.php");
 
-   $email = $senha="";
+   session_start();
+   $_SESSION['nome']="";
+   $_SESSION['administrador']="";
 
+   $email = $senha="";
    $emailErr=$senhaErr="";
 
    
@@ -25,7 +28,12 @@
      if($sql->execute(array($email,MD5($senha)))){
         $info =$sql->fetchAll(PDO::FETCH_ASSOC);
         if(count($info)>0){
-          header('location:listUsuario.php');
+            foreach($info as $key =>$values){
+              $_SESSION['nome']=$values['nome'];
+              $_SESSION['administrador']=$values['administrador'];
+            }
+
+          header('location:principal.php');
         } else {
           echo '<h6>Email de Usuario não cadastrado</h6>';
         }
