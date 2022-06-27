@@ -19,7 +19,7 @@
      echo "<br>";
 
      $date1=date_create(date("Y-m-d"));
-     $date2=date_create
+     $date2=date_create;
 
      echo $diff->format("%Y");
 

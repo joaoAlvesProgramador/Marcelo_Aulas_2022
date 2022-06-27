@@ -68,7 +68,7 @@ ul {
   overflow: hidden; 
 }
 li{
-    float:left;
+    float:right;
 }
 
 li a {
@@ -89,6 +89,15 @@ li a:hover {
     position: absolute;
     bottom: 0;
     left: 0;
+}
+table{
+  display: block;
+  color: #000;
+  text-align:center;
+  padding: 80px 310px;
+  text-decoration: none;
+  border-color: #16193B; 
+
 }
 
 </style>

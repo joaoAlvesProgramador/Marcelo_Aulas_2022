@@ -1,10 +1,13 @@
 <?php
     include"../include/mysql.php";
+    require("../templates/header.php");
+    require("../css/style.php");
 
     $sql=$pdo->prepare('SELECT * FROM usuariu');
     if($sql->execute()){
         $info = $sql->fetchALL(PDO::FETCH_ASSOC);
 
+        echo "<h1>Usuarios</h1>";
         echo "<table border='1'>";
         echo "<tr>";
         echo "<th>Codigo</th>";
@@ -32,4 +35,5 @@
         }
         echo "<table>";
     }
+    require("../templates/footer.php");
 ?>

@@ -102,6 +102,7 @@ oi
        <label for="administrador">administrador</label>
 
        <br>
+
        <input class="botao" type="submit" value="Salvar" name="cadastro">
        <br>
        <span class="obrigatorio"><?php echo $msgErr ?></span>

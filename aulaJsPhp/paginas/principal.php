@@ -21,8 +21,6 @@
         <br>
         Voce é admin? <?php if ($_SESSION['administrador']==1) echo "<a href='listUsuario.php'>Lista de usuarios</a>"; else echo "Não";?> 
     </h1>
-    <br>
-    <h2><a href="logout.php">Encerrar sessão</a></h2>
     <?php
     require("../templates/footer.php");
     ?>
