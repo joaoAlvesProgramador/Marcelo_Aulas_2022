@@ -12,9 +12,11 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-    require("../templates/header.php");
-?>
+<ul>
+  <li><a href="logout.php">Sair</a></li>
+  <li><?php if ($_SESSION['administrador']==1) echo "<a href='listUsuario.php'>Usuarios</a>"; else echo "";?></li>
+  <li><a href="principal.php">Portifolio</a></li>  
+</ul>
     <h1>Pagina principal</h1>
     <h1>
         Olá <?php echo $_SESSION['nome']?>

@@ -1,7 +1,6 @@
 <?php
    include "../include/mysql.php";
    include "../include/functions.php";
-   require("../templates/header.php");
    require("../css/style.php");
 
    session_start();
