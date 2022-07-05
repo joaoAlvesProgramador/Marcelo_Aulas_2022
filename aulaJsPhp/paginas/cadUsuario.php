@@ -47,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['cadastro'])){
 
   //Verificar se existe um usuariu
   if($email && $nome && $senha && $fone){
-    $sql=$pdo->prepare("SELECT * FROM USUARIU WHERE email = ?");
+    $sql=$pdo->prepare("SELECT * FROM usuario WHERE email = ?");
     if($sql->execute(array($email))){
       if($sql->rowCount()>0){
         $msgErr="Email já cadastrado";
       }else{
       //Inserir no banco de dados
-      $sql = $pdo->prepare("INSERT INTO USUARIU (codigo, nome, email, senha, fone, administrador)
+      $sql = $pdo->prepare("INSERT INTO USUARIO (codigo, nome, email, senha, fone, administrador)
                             VALUES (null, ?, ?, ?, ?, ?)");
       if ($sql->execute(array($nome, $email, MD5($senha), $fone, $administrador))){
           $msgErr = "Dados cadastrados com sucesso!";  

@@ -20,7 +20,7 @@
 
     if(isset($_GET['codigo'])){
         $codigo=$_GET['codigo'];
-        $sql=$pdo->prepare('SELECT * FROM usuariu WHERE codigo=?');
+        $sql=$pdo->prepare('SELECT * FROM usuario WHERE codigo=?');
         if($sql->execute(array($codigo))){
             $info=$sql->fetchAll(PDO::FETCH_ASSOC);
             foreach($info as $key => $value){
@@ -67,12 +67,12 @@
 
     //Verificar se existe um usuariu
     if($email && $nome && $senha && $fone){
-        $sql=$pdo->prepare("SELECT * FROM usuariu WHERE email = ? AND codigo <> ?");
+        $sql=$pdo->prepare("SELECT * FROM usuario WHERE email = ? AND codigo <> ?");
             if($sql->execute(array($email,$codigo))){
                 if($sql->rowCount()>0){
                     $msgErr="Email ja cadastrado para outro usuario";
                 } else {
-                    $sql=$pdo->prepare("UPDATE usuariu SET nome=?, email=?, senha=?, fone=?, administrador=? WHERE codigo=?");
+                    $sql=$pdo->prepare("UPDATE usuario SET nome=?, email=?, senha=?, fone=?, administrador=? WHERE codigo=?");
                     if($sql->execute(array($nome,$email,MD5($senha),$fone,$administrador,$codigo))){
                         $msgErr="Dados alterados com sucesso!";
                         header('location: listUsuario.php');

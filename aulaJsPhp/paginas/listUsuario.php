@@ -3,7 +3,7 @@
     require("../templates/header.php");
     require("../css/style.php");
 
-    $sql=$pdo->prepare('SELECT * FROM usuariu');
+    $sql=$pdo->prepare('SELECT * FROM usuario');
     if($sql->execute()){
         $info = $sql->fetchALL(PDO::FETCH_ASSOC);
 

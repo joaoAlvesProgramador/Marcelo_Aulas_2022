@@ -4,7 +4,7 @@
     if(isset($_GET['codigo'])){
         $codigo=$_GET['codigo'];
         
-        $sql=$pdo->prepare("DELETE FROM usuariu WHERE codigo=?");
+        $sql=$pdo->prepare("DELETE FROM usuario WHERE codigo=?");
         if($sql->execute(array($codigo))){
             echo 'Usuario excluido com sucesso.';
             header('Location:listUsuario.php');

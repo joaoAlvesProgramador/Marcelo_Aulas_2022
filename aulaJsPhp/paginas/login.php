@@ -23,7 +23,7 @@
        $senha=$_POST['senha'];
      }
 
-     $sql = $pdo->prepare("SELECT * FROM usuariu WHERE email=? AND senha=?");
+     $sql = $pdo->prepare("SELECT * FROM usuario WHERE email=? AND senha=?");
      if($sql->execute(array($email,MD5($senha)))){
         $info =$sql->fetchAll(PDO::FETCH_ASSOC);
         if(count($info)>0){
