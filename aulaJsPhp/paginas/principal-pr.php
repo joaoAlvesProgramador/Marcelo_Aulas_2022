@@ -15,15 +15,8 @@
 <ul>
   <li><a href="logout.php">Sair</a></li>
   <li><?php if ($_SESSION['administrador']==1) echo "<a href='listUsuario.php'>Usuarios</a>"; else echo "";?></li>
-  <li><?php if ($_SESSION['administrador']==1) echo "<a href='principal.php'>Portifolio</a>"; else echo "";?></li>
-  <li><a href="cadProduto.php">Produtos</a></li> 
+  <li><a href="principal.php">Portifolio</a></li>  
 </ul>
-    <h1>Pagina principal</h1>
-    <h1>
-        Olá <?php echo $_SESSION['nome']?>
-        <br>
-        Voce é admin? <?php if ($_SESSION['administrador']==1) echo "<a href='listUsuario.php'>Lista de usuarios</a>"; else echo "Não";?> 
-    </h1>
     <?php
     require("../templates/footer.php");
     ?>

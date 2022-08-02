@@ -1,6 +1,7 @@
 <?php
     include "../include/functions.php";
     include "../include/MySql.php";
+    require("../templates/header.php");
     require("../css/style.php");
 
     $msgErro = "";
@@ -58,15 +59,23 @@
 <html>
 
 <body>
-    <form method="post" enctype="multipart/form-data">
-        Nome: <input type="text" name="nome"><br>
-        Descrição: <input type="text" name="descricao"><br>
-        Valor: <input type="text" name="valor"><br>
+    <form class="jao"method="post" enctype="multipart/form-data">
+        <fieldset>
+            <h3>Cadastrar Produtos</h3>
+        Nome: <input class="input-pr" type="text" name="nome"><br>
+        Descrição: <input class="input-pr" type="text" name="descricao"><br>
+        Valor: <input class="input-pr"  type="text" name="valor"><br>
         Imagem:<br>
         <input type="file" name="image" /><br>
 
         <input type="submit" name="submit" value="Salvar" />
+        <a href="listProduto.php">Lista de Produtos</a>
+        </fieldset>
     </form>
 </body>
 
 </html>
+
+<?php
+  require("../templates/footer.php");
+?>

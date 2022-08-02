@@ -1,5 +1,7 @@
 <?php
     include "../include/mysql.php";
+    require("../templates/header.php");
+    require("../css/style.php");
 
     $sql = $pdo ->prepare("SELECT * FROM produto");
     if($sql->execute()){
@@ -16,4 +18,6 @@
         }
 
     }
+
+    
 ?>
